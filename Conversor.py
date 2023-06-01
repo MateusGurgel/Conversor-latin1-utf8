@@ -1,13 +1,24 @@
 import pymysql
 
-db = pymysql.connect(host='localhost', port=3306, user='teste', password='teste', db='DBJR')
+db = pymysql.connect(host='200.139.21.67', port=3306, user='divsist', password='d1v1S1st', db='ojsbd2470prod')
 
 cursor = db.cursor()
 cursor.execute("SHOW TABLES")
 tables = cursor.fetchall()
+index = 0;
+offset = 50;
 
 for table in tables:
+
+    index += 1
+
+    if index < offset:
+        continue 
+
     table_name = table[0]
+    
+    print(f"Table {table_name} started")
+    print(f"Table index {index}")
 
     cursor.execute(f"DESCRIBE {table_name}")
     columns = cursor.fetchall()
